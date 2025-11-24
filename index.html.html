@@ -152,62 +152,6 @@
             resize: vertical;
         }
         
-        .file-upload {
-            position: relative;
-            display: block;
-            width: 100%;
-        }
-        .file-upload input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 2;
-        }
-        .file-upload-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 20px;
-            border: 3px dashed #e8e8e8;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            min-height: 120px;
-        }
-        .file-upload-label:hover {
-            border-color: #ff6b35;
-            background: #fff8f3;
-        }
-        .file-upload-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .file-upload-text {
-            color: #666;
-            font-size: 0.95em;
-            font-weight: 500;
-        }
-        .file-upload-hint {
-            color: #999;
-            font-size: 0.85em;
-            margin-top: 5px;
-        }
-        .file-name {
-            margin-top: 12px;
-            font-size: 0.9em;
-            color: #28a745;
-            font-weight: 600;
-            padding: 8px 15px;
-            background: #d4edda;
-            border-radius: 6px;
-            display: none;
-        }
-        
         .radio-group {
             display: flex;
             gap: 20px;
@@ -476,11 +420,11 @@
                     </div>
                 </div>
 
-                <!-- 2. Identity Proof & Photo -->
+                <!-- 2. Identity Proof -->
                 <div class="section">
                     <h2 class="section-title">
                         <span class="section-number">2</span>
-                        पहचान पत्र और फोटो
+                        पहचान पत्र
                     </h2>
                     <div class="form-grid">
                         <div class="form-group">
@@ -488,44 +432,8 @@
                             <input type="text" name="aadhaar" required placeholder="12 अंकों का आधार नंबर" pattern="[0-9]{12}">
                         </div>
                         <div class="form-group">
-                            <label>आधार कार्ड फोटो <span class="required">*</span></label>
-                            <div class="file-upload">
-                                <input type="file" id="aadhaarFile" accept="image/*,.pdf" required onchange="showFileName('aadhaarFile', 'aadhaarFileName')">
-                                <div class="file-upload-label">
-                                    <div class="file-upload-icon">📄</div>
-                                    <div class="file-upload-text">आधार कार्ड अपलोड करें</div>
-                                    <div class="file-upload-hint">Image या PDF</div>
-                                </div>
-                                <div id="aadhaarFileName" class="file-name"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label>ड्राइविंग लाइसेंस नंबर <span class="optional">(Optional)</span></label>
                             <input type="text" name="dlNumber" placeholder="DL नंबर लिखें (अगर है तो)">
-                        </div>
-                        <div class="form-group">
-                            <label>ड्राइविंग लाइसेंस फोटो <span class="optional">(Optional)</span></label>
-                            <div class="file-upload">
-                                <input type="file" id="dlFile" accept="image/*,.pdf" onchange="showFileName('dlFile', 'dlFileName')">
-                                <div class="file-upload-label">
-                                    <div class="file-upload-icon">📄</div>
-                                    <div class="file-upload-text">DL अपलोड करें (अगर है तो)</div>
-                                    <div class="file-upload-hint">Image या PDF</div>
-                                </div>
-                                <div id="dlFileName" class="file-name"></div>
-                            </div>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>अपनी सेल्फी फोटो <span class="required">*</span></label>
-                            <div class="file-upload">
-                                <input type="file" id="selfieFile" accept="image/*" required onchange="showFileName('selfieFile', 'selfieFileName')">
-                                <div class="file-upload-label">
-                                    <div class="file-upload-icon">🤳</div>
-                                    <div class="file-upload-text">सेल्फी फोटो अपलोड करें</div>
-                                    <div class="file-upload-hint">Clear front-facing photo</div>
-                                </div>
-                                <div id="selfieFileName" class="file-name"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -699,7 +607,7 @@
             <h2 class="modal-title">रजिस्ट्रेशन सफल!</h2>
             <p class="modal-message">
                 आपका रजिस्ट्रेशन सफलतापूर्वक सबमिट हो गया है।<br>
-                PDF डाउनलोड हो गया है और ईमेल भेज दिया गया है।<br><br>
+                ईमेल भेज दिया गया है।<br><br>
                 जल्द ही हम आपसे संपर्क करेंगे।<br>
                 धन्यवाद! 🙏
             </p>
@@ -707,8 +615,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/fonts/NotoSansDevanagari-normal.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS
@@ -716,15 +622,6 @@
         
         // Set today's date
         document.getElementById('signatureDate').value = new Date().toISOString().split('T')[0];
-
-        function showFileName(inputId, displayId) {
-            const input = document.getElementById(inputId);
-            const display = document.getElementById(displayId);
-            if (input.files.length > 0) {
-                display.textContent = '✓ ' + input.files[0].name;
-                display.style.display = 'block';
-            }
-        }
 
         function toggleVehicleDetails(show) {
             const details = document.getElementById('vehicleDetails');
@@ -770,27 +667,13 @@
                 const formData = new FormData(this);
                 const data = {};
                 formData.forEach((value, key) => {
-                    if (key !== 'aadhaarFile' && key !== 'dlFile' && key !== 'selfieFile') {
-                        data[key] = value;
-                    }
+                    data[key] = value;
                 });
                 
-                // Get file info
-                const aadhaarFile = document.getElementById('aadhaarFile').files[0];
-                const dlFile = document.getElementById('dlFile').files[0];
-                const selfieFile = document.getElementById('selfieFile').files[0];
-                
-                data.aadhaarFileName = aadhaarFile ? aadhaarFile.name : 'Not uploaded';
-                data.dlFileName = dlFile ? dlFile.name : 'Not uploaded';
-                data.selfieFileName = selfieFile ? selfieFile.name : 'Not uploaded';
-                
-                // Generate and download PDF
-                await generatePDF(data);
-                
-                // Send email
+                // Send email ONLY
                 await sendEmail(data);
                 
-                // Save to localStorage
+                // Save to localStorage (backup)
                 const submissions = JSON.parse(localStorage.getItem('deliveryBoySubmissions') || '[]');
                 submissions.push({
                     ...data,
@@ -806,9 +689,6 @@
                 document.getElementById('signatureDate').value = new Date().toISOString().split('T')[0];
                 document.getElementById('vehicleDetails').style.display = 'none';
                 document.getElementById('experienceDetails').style.display = 'none';
-                document.getElementById('aadhaarFileName').style.display = 'none';
-                document.getElementById('dlFileName').style.display = 'none';
-                document.getElementById('selfieFileName').style.display = 'none';
                 
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '✅ रजिस्ट्रेशन सबमिट करें';
@@ -821,107 +701,6 @@
             }
         });
 
-        async function generatePDF(data) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            // Use standard fonts that support English text
-            doc.setFont("helvetica");
-            
-            // Header with orange background
-            doc.setFillColor(255, 107, 53);
-            doc.rect(0, 0, 210, 45, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(28);
-            doc.setFont("helvetica", "bold");
-            doc.text('KHANAGO', 105, 22, { align: 'center' });
-            doc.setFontSize(14);
-            doc.text('Delivery Boy Registration Form', 105, 35, { align: 'center' });
-            
-            let y = 55;
-            doc.setTextColor(0, 0, 0);
-            
-            function addSection(title, content) {
-                doc.setFontSize(13);
-                doc.setFont("helvetica", "bold");
-                doc.setTextColor(255, 107, 53);
-                doc.text(title, 20, y);
-                y += 8;
-                doc.setFontSize(10);
-                doc.setFont("helvetica", "normal");
-                doc.setTextColor(0, 0, 0);
-                content.forEach(item => {
-                    if (y > 270) {
-                        doc.addPage();
-                        y = 20;
-                    }
-                    // Split long text
-                    const lines = doc.splitTextToSize(item, 170);
-                    lines.forEach(line => {
-                        doc.text(line, 20, y);
-                        y += 6;
-                    });
-                });
-                y += 8;
-            }
-            
-            addSection('1. Personal Details', [
-                'Name: ' + data.fullName,
-                'Mobile: ' + data.mobile,
-                'WhatsApp: ' + data.whatsapp,
-                'Address: ' + data.address,
-                'City: ' + data.city + ', PIN: ' + data.pincode
-            ]);
-            
-            addSection('2. Identity Proof & Photos', [
-                'Aadhaar Number: ' + data.aadhaar,
-                'Aadhaar Photo: ' + data.aadhaarFileName,
-                'DL Number: ' + (data.dlNumber || 'Not provided'),
-                'DL Photo: ' + data.dlFileName,
-                'Selfie Photo: ' + data.selfieFileName
-            ]);
-            
-            let vehicleContent = ['Own Vehicle: ' + data.hasVehicle];
-            if (data.hasVehicle === 'हाँ') {
-                vehicleContent.push('Vehicle Type: ' + (data.vehicleType || 'N/A'));
-                vehicleContent.push('Vehicle Number: ' + (data.vehicleNumber || 'N/A'));
-            }
-            addSection('3. Vehicle Details', vehicleContent);
-            
-            addSection('4. Bank Details', [
-                'Account Holder: ' + data.accountName,
-                'Account Number: ' + data.accountNumber,
-                'IFSC Code: ' + data.ifsc
-            ]);
-            
-            let workContent = [
-                'Working Hours: ' + data.workingHours,
-                'Work Area: ' + data.workArea,
-                'Previous Experience: ' + data.experience
-            ];
-            if (data.experience === 'हाँ' && data.experienceText) {
-                workContent.push('Experience Details: ' + data.experienceText);
-            }
-            addSection('5. Work Details', workContent);
-            
-            addSection('6. Terms Accepted', [
-                'Helmet mandatory',
-                'Information is correct',
-                'Agreed to SOP',
-                'Signature: ' + data.signature,
-                'Date: ' + new Date(data.signatureDate).toLocaleDateString('en-IN')
-            ]);
-            
-            // Footer
-            doc.setFontSize(9);
-            doc.setTextColor(128, 128, 128);
-            doc.text('Contact: support@khanago.shop | Mobile: 8003270534', 105, 285, { align: 'center' });
-            doc.text('Submitted: ' + new Date().toLocaleString('en-IN'), 105, 290, { align: 'center' });
-            
-            const fileName = 'KhanaGo_' + data.fullName.replace(/\s+/g, '_') + '.pdf';
-            doc.save(fileName);
-        }
-
         async function sendEmail(data) {
             const emailParams = {
                 to_email: 'support@khanago.shop',
@@ -933,10 +712,7 @@
                 city: data.city,
                 pincode: data.pincode,
                 aadhaar: data.aadhaar,
-                aadhaar_file: data.aadhaarFileName,
                 dl_number: data.dlNumber || 'Not provided',
-                dl_file: data.dlFileName,
-                selfie_file: data.selfieFileName,
                 has_vehicle: data.hasVehicle,
                 vehicle_type: data.vehicleType || 'N/A',
                 vehicle_number: data.vehicleNumber || 'N/A',
