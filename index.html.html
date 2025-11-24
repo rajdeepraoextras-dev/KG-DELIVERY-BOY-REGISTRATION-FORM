@@ -45,16 +45,6 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
         }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-        }
         .header-content {
             position: relative;
             z-index: 1;
@@ -70,17 +60,13 @@
             font-size: 1.3em; 
             opacity: 0.95;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
         .header .subtitle {
             font-size: 0.95em;
             margin-top: 15px;
             opacity: 0.9;
-            font-weight: 400;
         }
-        .content { 
-            padding: 60px 50px; 
-        }
+        .content { padding: 60px 50px; }
         
         .section {
             margin-bottom: 50px;
@@ -137,9 +123,6 @@
             margin-bottom: 10px;
             color: #333;
             font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         .form-group label .required {
             color: #ff6b35;
@@ -154,76 +137,14 @@
             transition: all 0.3s;
             background: white;
         }
-        .form-group input:hover, .form-group select:hover, .form-group textarea:hover {
-            border-color: #ffb89d;
-        }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: #ff6b35;
             box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
-            transform: translateY(-2px);
         }
         .form-group textarea {
             min-height: 100px;
             resize: vertical;
-        }
-        
-        .file-upload {
-            position: relative;
-            display: block;
-            width: 100%;
-        }
-        .file-upload input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 2;
-        }
-        .file-upload-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 20px;
-            border: 3px dashed #e8e8e8;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            min-height: 120px;
-        }
-        .file-upload-label:hover {
-            border-color: #ff6b35;
-            background: #fff8f3;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.15);
-        }
-        .file-upload-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .file-upload-text {
-            color: #666;
-            font-size: 0.95em;
-            font-weight: 500;
-        }
-        .file-upload-hint {
-            color: #999;
-            font-size: 0.85em;
-            margin-top: 5px;
-        }
-        .file-name {
-            margin-top: 12px;
-            font-size: 0.9em;
-            color: #28a745;
-            font-weight: 600;
-            padding: 8px 15px;
-            background: #d4edda;
-            border-radius: 6px;
-            display: none;
         }
         
         .radio-group {
@@ -254,10 +175,6 @@
             cursor: pointer;
             accent-color: #ff6b35;
         }
-        .radio-option input[type="radio"]:checked + span {
-            color: #ff6b35;
-            font-weight: 600;
-        }
         
         .info-box {
             background: linear-gradient(135deg, #fff8f3 0%, #ffe5d9 100%);
@@ -265,19 +182,11 @@
             border-radius: 12px;
             border-left: 5px solid #ff6b35;
             margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
         }
         .info-box h3 {
             color: #ff6b35;
             font-size: 1.3em;
             margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .info-box h3::before {
-            content: '🎁';
-            font-size: 1.3em;
         }
         .info-box ul {
             list-style: none;
@@ -303,7 +212,6 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.9em;
         }
         
         .checkbox-group {
@@ -325,7 +233,6 @@
         .checkbox-option:hover {
             border-color: #ff6b35;
             background: #fff8f3;
-            transform: translateX(5px);
         }
         .checkbox-option input[type="checkbox"] {
             width: 22px;
@@ -366,14 +273,10 @@
             width: 100%;
             text-align: center;
             box-shadow: 0 6px 25px rgba(255, 107, 53, 0.3);
-            letter-spacing: 0.5px;
         }
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 35px rgba(255, 107, 53, 0.4);
-        }
-        .btn:active {
-            transform: translateY(-1px);
         }
         .btn:disabled {
             opacity: 0.6;
@@ -381,28 +284,67 @@
             transform: none;
         }
         
-        .success-message {
+        /* POPUP MODAL */
+        .modal-overlay {
             display: none;
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            color: #155724;
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 30px;
-            border: 2px solid #28a745;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
             text-align: center;
-            font-weight: 600;
-            font-size: 1.1em;
-            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
         }
-        .success-message.show {
-            display: block;
-            animation: slideUp 0.5s ease;
+        .modal-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
         }
-        .success-message::before {
-            content: '✅';
-            font-size: 3em;
-            display: block;
+        .modal-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #28a745;
             margin-bottom: 15px;
+        }
+        .modal-message {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .modal-btn {
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
         }
         
         .footer-note {
@@ -419,13 +361,11 @@
         
         @media (max-width: 768px) {
             .header h1 { font-size: 2em; }
-            .header p { font-size: 1.1em; }
             .content { padding: 40px 25px; }
             .section { padding: 25px 20px; }
-            .section-title { font-size: 1.3em; }
             .form-grid { grid-template-columns: 1fr; }
             .signature-section { grid-template-columns: 1fr; }
-            .radio-group { flex-direction: column; }
+            .modal { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -548,7 +488,7 @@
                         </div>
                         <div class="form-group">
                             <label>IFSC कोड <span class="required">*</span></label>
-                            <input type="text" name="ifsc" required placeholder="IFSC कोड लिखें" pattern="^[A-Z]{4}0[A-Z0-9]{6}$">
+                            <input type="text" name="ifsc" required placeholder="IFSC कोड लिखें">
                         </div>
                     </div>
                 </div>
@@ -601,7 +541,7 @@
                         KhanaGo द्वारा दी जाने वाली चीज़ें
                     </h2>
                     <div class="info-box">
-                        <h3>मुफ्त में मिलेगा (बिना सिक्योरिटी के)</h3>
+                        <h3>🎁 मुफ्त में मिलेगा (बिना सिक्योरिटी के)</h3>
                         <ul>
                             <li>मोबाइल होल्डर</li>
                             <li>डिलीवरी बैग</li>
@@ -647,23 +587,33 @@
                     ✅ रजिस्ट्रेशन सबमिट करें
                 </button>
 
-                <div id="successMessage" class="success-message">
-                    रजिस्ट्रेशन सफलतापूर्वक सबमिट हो गया!<br>
-                    PDF डाउनलोड हो गया है। जल्द ही आपसे संपर्क किया जाएगा।
-                </div>
-
                 <div class="footer-note">
                     किसी भी समस्या के लिए संपर्क करें:<br>
-                    <strong>📧 Support@KhanaGo.Shop</strong> | <strong>📱 8003270534</strong>
+                    <strong>📧 support@khanago.shop</strong> | <strong>📱 8003270534</strong>
                 </div>
             </form>
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- SUCCESS POPUP MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-icon">✅</div>
+            <h2 class="modal-title">रजिस्ट्रेशन सफल!</h2>
+            <p class="modal-message">
+                आपका रजिस्ट्रेशन सफलतापूर्वक सबमिट हो गया है।<br>
+                PDF डाउनलोड हो गया है।<br><br>
+                जल्द ही हम आपसे संपर्क करेंगे।<br>
+                धन्यवाद! 🙏
+            </p>
+            <button class="modal-btn" onclick="closeModal()">ठीक है</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // Initialize EmailJS with your public key
+        // Initialize EmailJS
         emailjs.init('N9mANwkgTONiZAM_V');
         
         // Set today's date
@@ -697,6 +647,10 @@
             }
         }
 
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+        }
+
         document.getElementById('registrationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -704,44 +658,48 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '⏳ सबमिट हो रहा है...';
             
-            // Collect form data
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Generate PDF
-            await generatePDF(data);
-            
-            // Send email via EmailJS
-            await sendEmail(data);
-            
-            // Save to localStorage
-            const submissions = JSON.parse(localStorage.getItem('deliveryBoySubmissions') || '[]');
-            submissions.push({
-                ...data,
-                submittedAt: new Date().toISOString()
-            });
-            localStorage.setItem('deliveryBoySubmissions', JSON.stringify(submissions));
-            
-            // Show success
-            document.getElementById('successMessage').classList.add('show');
-            
-            // Reset form
-            this.reset();
-            document.getElementById('signatureDate').value = new Date().toISOString().split('T')[0];
-            document.getElementById('vehicleDetails').style.display = 'none';
-            document.getElementById('experienceDetails').style.display = 'none';
-            
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '✅ रजिस्ट्रेशन सबमिट करें';
-            
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.remove('show');
-            }, 8000);
+            try {
+                // Collect form data
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                
+                // Generate and download PDF
+                await generatePDF(data);
+                
+                // Send email (don't wait for it, continue even if it fails)
+                sendEmail(data).catch(err => {
+                    console.log('Email sending failed (but PDF downloaded):', err);
+                });
+                
+                // Save to localStorage
+                const submissions = JSON.parse(localStorage.getItem('deliveryBoySubmissions') || '[]');
+                submissions.push({
+                    ...data,
+                    submittedAt: new Date().toISOString()
+                });
+                localStorage.setItem('deliveryBoySubmissions', JSON.stringify(submissions));
+                
+                // Show success popup
+                document.getElementById('successModal').classList.add('show');
+                
+                // Reset form
+                this.reset();
+                document.getElementById('signatureDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('vehicleDetails').style.display = 'none';
+                document.getElementById('experienceDetails').style.display = 'none';
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✅ रजिस्ट्रेशन सबमिट करें';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('कोई समस्या हुई। कृपया दोबारा प्रयास करें।');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✅ रजिस्ट्रेशन सबमिट करें';
+            }
         });
 
         async function generatePDF(data) {
@@ -756,7 +714,7 @@
             doc.setFont(undefined, 'bold');
             doc.text('🛵 KHANAGO', 105, 22, { align: 'center' });
             doc.setFontSize(14);
-            doc.text('डिलीवरी बॉय रजिस्ट्रेशन फॉर्म', 105, 35, { align: 'center' });
+            doc.text('डिलीवरी बॉय रजिस्ट्रेशन', 105, 35, { align: 'center' });
             
             let y = 55;
             doc.setTextColor(0, 0, 0);
@@ -790,11 +748,11 @@
             ]);
             
             addSection('2. पहचान पत्र', [
-                'आधार नंबर: ' + data.aadhaar,
-                'DL नंबर: ' + data.dlNumber
+                'आधार: ' + data.aadhaar,
+                'DL: ' + data.dlNumber
             ]);
             
-            let vehicleContent = ['अपना वाहन: ' + data.hasVehicle];
+            let vehicleContent = ['वाहन: ' + data.hasVehicle];
             if (data.hasVehicle === 'हाँ') {
                 vehicleContent.push('प्रकार: ' + (data.vehicleType || 'N/A'));
                 vehicleContent.push('नंबर: ' + (data.vehicleNumber || 'N/A'));
@@ -808,7 +766,7 @@
             ]);
             
             let workContent = [
-                'काम के घंटे: ' + data.workingHours,
+                'घंटे: ' + data.workingHours,
                 'क्षेत्र: ' + data.workArea,
                 'अनुभव: ' + data.experience
             ];
@@ -817,13 +775,7 @@
             }
             addSection('5. काम का विवरण', workContent);
             
-            addSection('6. मुफ्त में', [
-                '• मोबाइल होल्डर',
-                '• डिलीवरी बैग',
-                '• टी-शर्ट'
-            ]);
-            
-            addSection('7. नियम', [
+            addSection('6. नियम', [
                 '✓ हेलमेट जरूरी',
                 '✓ सही जानकारी',
                 '✓ SOP से सहमत',
@@ -833,42 +785,41 @@
             
             doc.setFontSize(9);
             doc.setTextColor(128, 128, 128);
-            doc.text('सबमिट: ' + new Date().toLocaleString('hi-IN'), 105, 285, { align: 'center' });
-            doc.text('संपर्क: support@khanago.shop | 8003270534', 105, 290, { align: 'center' });
+            doc.text('support@khanago.shop | 8003270534', 105, 285, { align: 'center' });
             
             const fileName = 'KhanaGo_' + data.fullName.replace(/\s+/g, '_') + '.pdf';
             doc.save(fileName);
         }
 
         async function sendEmail(data) {
-            try {
-                // Prepare email parameters
-                const emailParams = {
-                    to_email: 'support@khanago.shop',
-                    from_name: 'KhanaGo Registration',
-                    rider_name: data.fullName,
-                    mobile: data.mobile,
-                    whatsapp: data.whatsapp,
-                    address: data.address,
-                    city: data.city,
-                    pincode: data.pincode,
-                    aadhaar: data.aadhaar,
-                    dl_number: data.dlNumber,
-                    has_vehicle: data.hasVehicle,
-                    vehicle_type: data.vehicleType || 'N/A',
-                    vehicle_number: data.vehicleNumber || 'N/A',
-                    account_name: data.accountName,
-                    account_number: data.accountNumber,
-                    ifsc: data.ifsc,
-                    working_hours: data.workingHours,
-                    work_area: data.workArea,
-                    experience: data.experience,
-                    experience_details: data.experienceText || 'N/A',
-                    signature: data.signature,
-                    date: new Date(data.signatureDate).toLocaleDateString('hi-IN')
-                };
-                
-                // Send email using EmailJS
-                await emailjs.send('service_e4ebe8l', 'template_t6khkhq', emailParams);
-                
-                console.log('Email sent succ
+            const emailParams = {
+                to_email: 'support@khanago.shop',
+                from_name: 'KhanaGo Registration',
+                rider_name: data.fullName,
+                mobile: data.mobile,
+                whatsapp: data.whatsapp,
+                address: data.address,
+                city: data.city,
+                pincode: data.pincode,
+                aadhaar: data.aadhaar,
+                dl_number: data.dlNumber,
+                has_vehicle: data.hasVehicle,
+                vehicle_type: data.vehicleType || 'N/A',
+                vehicle_number: data.vehicleNumber || 'N/A',
+                account_name: data.accountName,
+                account_number: data.accountNumber,
+                ifsc: data.ifsc,
+                working_hours: data.workingHours,
+                work_area: data.workArea,
+                experience: data.experience,
+                experience_details: data.experienceText || 'N/A',
+                signature: data.signature,
+                date: new Date(data.signatureDate).toLocaleDateString('hi-IN')
+            };
+            
+            await emailjs.send('service_e4ebe8l', 'template_t6khkhq', emailParams);
+            console.log('✅ Email sent successfully!');
+        }
+    </script>
+</body>
+</html>
